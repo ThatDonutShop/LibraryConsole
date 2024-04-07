@@ -17,6 +17,14 @@ public class WeltecLibrary
         _items.Add(item);
     }
 
+    public void DeleteItemInCatalog(Item item)
+    {
+        if (_items.Contains(item))
+        {
+            _items.Remove(item);
+        }
+    }
+
     // Add methods for managing borrowings, returns, renewals, etc.
     // You can implement methods like BorrowItem, ReturnItem, RenewItem, CalculatePenalty, etc.
 
