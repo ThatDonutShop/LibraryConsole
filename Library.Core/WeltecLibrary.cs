@@ -1,6 +1,7 @@
 ﻿namespace Library.Core;
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 public class WeltecLibrary
@@ -15,24 +16,10 @@ public class WeltecLibrary
     //    return member.Borrowings.ToArray();
     //}
 
-    public void BorrowItem(Member member, Item item) 
-    {
-        if (_items.Contains(item) == false) return;
+    //public void RenewBorrowedItem(Member member, Item item) 
+    //{
 
-        item.IsBorrowed = true;
-        member.Borrowings.Add(new Borrowing()
-        {
-            BorrowDate = DateTime.Now,
-            BorrowedItem = item,
-            DueDate = DateTime.Now.AddDays(5),
-            IsRenewed = false,
-        });
-    }
-
-    public void RenewBorrowedItem(Member member, Item item) 
-    {
-
-    }
+    //}
 
     public void Add(Item item)
     {
@@ -41,9 +28,11 @@ public class WeltecLibrary
 
     public void Remove(Item item)
     {
-        if (_items.Contains(item))
+        var itemToDelete = _items.SingleOrDefault(i => i.Title == item.Title);
+     
+        if (itemToDelete is not null)
         {
-            _items.Remove(item);
+            _items.Remove(itemToDelete);
         }
     }
 

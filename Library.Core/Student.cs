@@ -10,7 +10,7 @@ public sealed class Student : Member
 
     public override void Add(Item item)
     {
-        if (Borrowings.Count >= 5)
+        if (Borrowings.Length >= 5)
         {
             return;
         }
