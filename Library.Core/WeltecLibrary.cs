@@ -8,8 +8,6 @@ public class WeltecLibrary
     private readonly List<Item> _items = new();
     private readonly List<Member> _members = new();
 
-    public Item[] Catalog => _items.ToArray();
-
    // public List<Member> Members => _members.ToArray();
 
     public void Add(Item item)

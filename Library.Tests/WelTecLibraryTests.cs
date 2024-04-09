@@ -11,7 +11,7 @@ namespace Library.Tests
 
             library.Add(new Book("The Tree"));
 
-            Assert.Single(library.Catalog);
+            Assert.Single(library.GetCatalogItems());
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace Library.Tests
             library.Add(new Book("The Tree1"));
             library.Add(new Book("The Tree2"));
 
-            Assert.Equal(3, library.Catalog.Count());
+            Assert.Equal(3, library.GetCatalogItems().Count());
         }
 
         [Fact]
@@ -37,7 +37,7 @@ namespace Library.Tests
 
             library.Remove(new Book("The Tree1"));
 
-            Assert.Equal(2, library.Catalog.Count());
+            Assert.Equal(2, library.GetCatalogItems().Count());
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace Library.Tests
 
             library.Remove(new Book("The Tree3"));
 
-            Assert.Equal(3, library.Catalog.Count());
+            Assert.Equal(3, library.GetCatalogItems().Count());
         }
 
         [Fact]
@@ -68,7 +68,6 @@ namespace Library.Tests
             
             Assert.Equal(4, items.Count());
         }
-
 
         [Fact]
         public void GetCatalogItems_GetByDigitalMedia_ReturnsOnlyDigitalMedia()
