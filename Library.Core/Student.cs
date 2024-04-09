@@ -7,4 +7,14 @@ public sealed class Student : Member
     public int MaxRenewals => 1;
 
     public double PenaltyRate => 5;
+
+    public override void Add(Item item)
+    {
+        if (Borrowings.Count >= 5)
+        {
+            return;
+        }
+
+        base.Add(item);
+    }
 }

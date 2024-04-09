@@ -1,4 +1,12 @@
 ﻿namespace Library.Core;
 
-public abstract record Item(string Title);
+public abstract class Item
+{
+    public Item(string title)
+    {
+        Title = title;
+    }
+    public bool IsBorrowed { get; set; }
+    public string Title { get; }
+}
 
