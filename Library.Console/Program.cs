@@ -2,11 +2,10 @@
 
 var library = new WeltecLibrary();
 
-var book = new Item("The Tree", ItemType.Book);
+var book = new Book("The Tree");
 
 //library.AddItemToCatalog(book);
 
-library.DeleteItemInCatalog(book);
+library.Remove(book);
 
 Console.WriteLine(library.Catalog.Count());
-

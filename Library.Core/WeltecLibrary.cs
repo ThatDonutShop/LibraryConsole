@@ -12,12 +12,12 @@ public class WeltecLibrary
 
    // public List<Member> Members => _members.ToArray();
 
-    public void AddItemToCatalog(Item item)
+    public void Add(Item item)
     {
         _items.Add(item);
     }
 
-    public void DeleteItemInCatalog(Item item)
+    public void Remove(Item item)
     {
         if (_items.Contains(item))
         {
@@ -25,8 +25,23 @@ public class WeltecLibrary
         }
     }
 
-    // Add methods for managing borrowings, returns, renewals, etc.
-    // You can implement methods like BorrowItem, ReturnItem, RenewItem, CalculatePenalty, etc.
+    public Item[] GetCatalogItems()
+    {
+        return _items.ToArray();
+    }
 
+    public T[] GetCatalogItems<T>() where T : Item
+    {
+        var items = new List<T>();
 
+        foreach (var item in _items)
+        {
+            if (item is T)
+            {
+                items.Add((T)item);
+            }
+        }
+
+        return items.ToArray();
+    }
 }
