@@ -12,4 +12,6 @@ public class Borrowing
     public bool IsReturned { get; set; }
 
     public bool IsRenewed { get; set; }
+
+    public bool IsOverdue => DueDate < DateOnly.FromDateTime(DateTime.Today);
 }

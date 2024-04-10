@@ -11,16 +11,6 @@ public class WeltecLibrary
 
     public List<Member> Members => _members;
 
-    //public Borrowing[] GetBorrowedItems(Member member)
-    //{
-    //    return member.Borrowings.ToArray();
-    //}
-
-    //public void RenewBorrowedItem(Member member, Item item) 
-    //{
-
-    //}
-
     public void Add(Item item)
     {
         _items.Add(item);

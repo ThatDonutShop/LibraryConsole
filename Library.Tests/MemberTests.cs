@@ -22,4 +22,17 @@ public class MemberTests
         Assert.False(student.Borrowings[0].IsRenewed);
         Assert.Equal(book, student.Borrowings[0].BorrowedItem);
     }
+
+    [Fact]
+    public void Borrowings_AskingForlistOfTheirBorrowings_CanDisplayPenalties()
+    {
+        var book = new Book("Eggs and Ham");
+
+        var student = new Student();
+
+        student.BorrowItem(book);
+
+        Assert.True(student.Borrowings[0].IsOverdue);
+        
+    }
 }
