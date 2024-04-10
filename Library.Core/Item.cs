@@ -6,7 +6,9 @@ public abstract class Item
     {
         Title = title;
     }
-    public bool IsBorrowed { get; set; }
+    
     public string Title { get; }
+
+    public Borrowing? Borrowed { get; set;}
 }
 

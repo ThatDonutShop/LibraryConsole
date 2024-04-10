@@ -2,13 +2,13 @@
 
 public sealed class Staff : Member
 {
-    public override void Add(Item item)
+    public override void BorrowItem(Item item)
     {
-        if (item.IsBorrowed)
+        if (item.Borrowed is not null)
         {
             return;
         }
 
-        base.Add(item);
+        base.BorrowItem(item);
     }
 }

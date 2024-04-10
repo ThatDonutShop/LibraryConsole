@@ -12,19 +12,23 @@ public abstract class Member
 
     public Borrowing[] Borrowings => _borrowings.ToArray();    
 
-    public virtual void Add(Item item)
+    public virtual void BorrowItem(Item item)
     {
-        if (item.IsBorrowed)
+        if (item.Borrowed is not null)
         {
             return;
         }
-        item.IsBorrowed = true;
-        _borrowings.Add(new Borrowing()
+        var borrowedDate = DateOnly.FromDateTime(DateTime.Today);
+        var borrowedItem = new Borrowing()
         {
-            BorrowDate = DateTime.Now,
+            BorrowDate = borrowedDate,
             BorrowedItem = item,
-            DueDate = DateTime.Now.AddDays(5),
+            DueDate = borrowedDate.AddDays(5),
             IsRenewed = false,
-        });
+        };
+
+        item.Borrowed = borrowedItem;
+
+        _borrowings.Add(borrowedItem);
     }
 }

@@ -8,13 +8,13 @@ public sealed class Student : Member
 
     public double PenaltyRate => 5;
 
-    public override void Add(Item item)
+    public override void BorrowItem(Item item)
     {
         if (Borrowings.Length >= 5)
         {
             return;
         }
 
-        base.Add(item);
+        base.BorrowItem(item);
     }
 }
