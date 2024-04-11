@@ -11,4 +11,6 @@ public sealed class Staff : Member
 
         base.BorrowItem(item);
     }
+
+    protected override DateOnly GetDueDate(DateOnly borrowedDate) => new(borrowedDate.Year, 12, 31);
 }

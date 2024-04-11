@@ -17,4 +17,6 @@ public sealed class Student : Member
 
         base.BorrowItem(item);
     }
+
+    protected override DateOnly GetDueDate(DateOnly borrowedDate) => borrowedDate.AddDays(90);
 }

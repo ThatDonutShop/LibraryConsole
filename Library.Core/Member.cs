@@ -18,12 +18,13 @@ public abstract class Member
         {
             return;
         }
+
         var borrowedDate = DateOnly.FromDateTime(DateTime.Today);
         var borrowedItem = new Borrowing()
         {
             BorrowDate = borrowedDate,
             BorrowedItem = item,
-            DueDate = borrowedDate.AddDays(5),
+            DueDate = GetDueDate(borrowedDate),
             IsRenewed = false,
         };
 
@@ -31,4 +32,7 @@ public abstract class Member
 
         _borrowings.Add(borrowedItem);
     }
+
+    protected abstract DateOnly GetDueDate(DateOnly borrowedDate);
+    
 }
