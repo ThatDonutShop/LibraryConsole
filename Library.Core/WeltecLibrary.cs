@@ -18,7 +18,7 @@ public class WeltecLibrary
 
     public void Remove(Item item)
     {
-        var itemToDelete = _items.SingleOrDefault(i => i.Title == item.Title);
+        var itemToDelete = _items.FirstOrDefault(i => i.Title == item.Title);
      
         if (itemToDelete is not null)
         {
