@@ -10,7 +10,7 @@ do
     Console.WriteLine(string.Empty);
 
     var command = AnsiConsole.Prompt(new SelectionPrompt<Commands>()
-        .Title("What do you want to [teal]do[/]?")
+        .Title(" [teal]What do you want to do[/]?")
         .PageSize(10)
         .MoreChoicesText("[grey](Move up and down to reveal more options)[/]")
         .AddChoices(new[]
@@ -28,7 +28,7 @@ do
                  case Commands.CreateStudent:
                      return "Register student";
                  case Commands.AddLibraryItem:
-                     return "Add Resource to library catalog";
+                     return "Add item to library catalog";
                  default:
                      throw new NotImplementedException(commandName.ToString());
              }
@@ -89,10 +89,8 @@ void CreateStudent()
 
 void AddLibraryItem()
 {
-    AnsiConsole.MarkupLine("[teal]Add library item[/]");
-
     var resourceType = AnsiConsole.Prompt(new SelectionPrompt<ResourceTypes>()
-      .Title("What kind of content?")
+      .Title("[teal]Add library item[/]")
       .UseConverter((resourceType) => 
       {
           switch (resourceType)
@@ -100,10 +98,9 @@ void AddLibraryItem()
               case ResourceTypes.DigtalContent:
                   return "Digital media";
               case ResourceTypes.Book:
-              case ResourceTypes.Article:
-                  return resourceType.ToString();
+              case ResourceTypes.Article:               
               default:
-                  throw new NotImplementedException(resourceType.ToString());
+                  return resourceType.ToString();
 
           }
       })
@@ -111,7 +108,7 @@ void AddLibraryItem()
       {
           ResourceTypes.Book,
           ResourceTypes.Article,
-          ResourceTypes.DigtalContent       
+          ResourceTypes.DigtalContent      ,
       }));
 
     var title = AnsiConsole.Ask<string>("[teal]The Title:[/]");
