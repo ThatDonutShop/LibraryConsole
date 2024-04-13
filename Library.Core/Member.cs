@@ -37,5 +37,10 @@ public abstract class Member
 
     protected abstract DateOnly GetDueDate(DateOnly borrowedDate);
 
-    protected virtual decimal GetPenaltyPerDay() => 5; 
+    protected virtual decimal GetPenaltyPerDay() => 5;
+
+    public override string ToString()
+    {
+        return FirstName + " " + LastName;
+    }
 }
