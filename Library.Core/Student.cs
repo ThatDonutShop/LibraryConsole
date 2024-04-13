@@ -8,14 +8,14 @@ public sealed class Student : Member
 
     public double PenaltyRate => 5;
 
-    public override void BorrowItem(Item item)
+    public override bool BorrowItem(Item item, IClock clock)
     {
         if (Borrowings.Length >= 5)
         {
-            return;
+            return false;
         }
 
-        base.BorrowItem(item);
+        return base.BorrowItem(item, clock);
     }
 
     protected override DateOnly GetDueDate(DateOnly borrowedDate) => borrowedDate.AddDays(90);

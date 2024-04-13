@@ -2,14 +2,14 @@
 
 public sealed class Staff : Member
 {
-    public override void BorrowItem(Item item)
+    public override bool BorrowItem(Item item, IClock clock)
     {
         if (item.Borrowed is not null)
         {
-            return;
+            return false;
         }
 
-        base.BorrowItem(item);
+       return base.BorrowItem(item, clock);
     }
 
     protected override DateOnly GetDueDate(DateOnly borrowedDate) => new(borrowedDate.Year, 12, 31);

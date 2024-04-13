@@ -12,15 +12,15 @@ public abstract class Member
 
     public Borrowing[] Borrowings => _borrowings.ToArray();    
 
-    public virtual void BorrowItem(Item item)
+    public virtual bool BorrowItem(Item item, IClock clock)
     {
         if (item.Borrowed is not null)
         {
-            return;
+            return false;
         }
 
-        var borrowedDate = DateOnly.FromDateTime(DateTime.Today);
-        var borrowedItem = new Borrowing()
+        var borrowedDate = clock.GetNowAsDate();
+        var borrowedItem = new Borrowing(clock, GetPenaltyPerDay())
         {
             BorrowDate = borrowedDate,
             BorrowedItem = item,
@@ -31,8 +31,11 @@ public abstract class Member
         item.Borrowed = borrowedItem;
 
         _borrowings.Add(borrowedItem);
+
+        return true;
     }
 
     protected abstract DateOnly GetDueDate(DateOnly borrowedDate);
-    
+
+    protected virtual decimal GetPenaltyPerDay() => 5; 
 }

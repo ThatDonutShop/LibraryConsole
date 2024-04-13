@@ -3,7 +3,16 @@ namespace Library.Core;
 
 public class Borrowing
 {
-    public Item BorrowedItem { get; set; }
+    private readonly IClock _clock;
+    private readonly decimal _overDuePerDay;
+
+    public Borrowing(IClock clock, decimal overDuePerDay)
+    {
+        _clock = clock;
+        _overDuePerDay = overDuePerDay;
+    }
+
+    public required Item BorrowedItem { get; set; }
     
     public DateOnly BorrowDate { get; set; }
 
@@ -13,5 +22,10 @@ public class Borrowing
 
     public bool IsRenewed { get; set; }
 
-    public bool IsOverdue(DateOnly now) => DueDate < now;
+    public int DaysOverDue => _clock.GetNowAsDate().DayNumber - DueDate.DayNumber;
+
+    public bool IsOverdue => DaysOverDue > 0;
+
+    public decimal OverDuePenalty => _overDuePerDay * DaysOverDue;
+    
 }

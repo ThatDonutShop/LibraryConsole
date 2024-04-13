@@ -4,12 +4,19 @@ namespace Library.Tests;
 
 public class TestClock : IClock
 {
-    private readonly DateTime _dateTime;
+    private DateTime _dateTime;
 
     public TestClock(DateTime dateTime)
     {
         _dateTime = dateTime;
     }
 
-    public DateTime Now => _dateTime;
+    public void TimeTravel(TimeSpan timeToTravel)
+    {
+        _dateTime = _dateTime + timeToTravel;
+    }
+
+    public DateTime GetNow() => _dateTime;
+
+    public DateOnly GetNowAsDate() => DateOnly.FromDateTime(GetNow());
 }
