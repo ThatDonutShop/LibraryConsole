@@ -10,13 +10,15 @@ public sealed class Student : Member
 
     public override bool BorrowItem(Item item, IClock clock)
     {
-        if (Borrowings.Length >= 5)
+        if (CanBorrowBook())
         {
-            return false;
+            return base.BorrowItem(item, clock);
         }
 
-        return base.BorrowItem(item, clock);
+        return false;
     }
+
+    public bool CanBorrowBook() => Borrowings?.Length < 5;
 
     protected override DateOnly GetDueDate(DateOnly borrowedDate) => borrowedDate.AddDays(90);
 }
