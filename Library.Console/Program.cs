@@ -44,7 +44,9 @@ do
                  case Commands.BorrowItem:
                      return "Issue library item";
                  case Commands.DisplayBorrowedBooks:
-                     return "Display Members Borrowed items";
+                     return "Display members borrowed items";
+                 case Commands.RenewLibraryItem:
+                     return "Renew a library item";
                  default:
                      throw new NotImplementedException(commandName.ToString());
              }
@@ -72,6 +74,9 @@ do
             break;
         case Commands.DisplayBorrowedBooks:
             DisplayBorrowedBooks();
+            break;
+        case Commands.RenewLibraryItem:
+            RenewLibraryItem();
             break;
         default:
             throw new NotSupportedException(command.ToString());
@@ -248,6 +253,31 @@ void DisplayBorrowedBooks()
     }
 }
 
+void RenewLibraryItem()
+{
+    var members = library.Members.OrderBy(m => m.FirstName).ToList();
+    if (members.Any())
+    {
+        AnsiConsole.MarkupLine("[teal]Who would you like to renew and item for?[/]");
+        var member = AnsiConsole.Prompt(new SelectionPrompt<Member>().AddChoices(members));
+
+        AnsiConsole.MarkupLine("[teal]What would you like to renew?[/]");
+        var borrowedItems = member.BorrowedItems.ToList();
+        var catalog = AnsiConsole.Prompt(new SelectionPrompt<BorrowedItem>().AddChoices(borrowedItems));
+
+        if (member.RenewItem(catalog.Item, clock))
+        {
+
+
+            AnsiConsole.MarkupLine("[teal]'{0}' has renewed {1} time(s) '{2}'[/]", member, catalog.RenewedTimes, catalog);
+        }
+        else
+        {
+            AnsiConsole.MarkupLine("[teal]'{0}' cannot be renewed[/]",catalog);
+        }
+    }
+}
+
 enum Commands
 {
     CreateStaffMember,
@@ -256,7 +286,8 @@ enum Commands
     RemoveLibraryItem,
     ListCatalogItems,
     BorrowItem,
-    DisplayBorrowedBooks
+    DisplayBorrowedBooks,
+    RenewLibraryItem
 }
 
 enum ResourceTypes 

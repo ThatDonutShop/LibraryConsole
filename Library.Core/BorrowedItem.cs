@@ -40,5 +40,10 @@ public class BorrowedItem
     public bool IsOverdue => DaysOverDue > 0;
 
     public decimal OverDuePenalty => _overDuePerDay * DaysOverDue;
-    
+
+    public override string ToString()
+    {
+        return Item.Title;
+    }
+
 }
