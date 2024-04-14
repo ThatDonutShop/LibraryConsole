@@ -14,9 +14,9 @@ public class StudentTests
         var clock = new SystemClock();
 
         student.BorrowItem(book, clock);
-                
+
         var today = DateOnly.FromDateTime(clock.GetNow());
-        
+
         Assert.NotNull(book.Borrowed);
         Assert.Equal(book.Borrowed, student.BorrowedItems[0]);
         Assert.Equal(today, student.BorrowedItems[0].BorrowDate);
@@ -27,7 +27,7 @@ public class StudentTests
 
     [Fact]
     public void Borrowings_AskingForlistOfTheirBorrowings_HasPenaltyOfOneDay()
-    {        
+    {
         var book = new Book("Eggs and Ham");
 
         var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
@@ -38,7 +38,7 @@ public class StudentTests
 
         clock.TimeTravel(TimeSpan.FromDays(91));
 
-        Assert.True(student.BorrowedItems[0].IsOverdue); 
+        Assert.True(student.BorrowedItems[0].IsOverdue);
         Assert.Equal(1, student.BorrowedItems[0].DaysOverDue);
         Assert.Equal(5, student.BorrowedItems[0].OverDuePenalty);
     }
@@ -111,12 +111,12 @@ public class StudentTests
 
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
-        student.BorrowItem(book1, clock); 
+        student.BorrowItem(book1, clock);
 
         clock.TimeTravel(TimeSpan.FromDays(1));
 
         var firstRenewal = student.RenewItem(book1, clock);
-        
+
         Assert.True(firstRenewal);
         Assert.Equal(1, student.BorrowedItems[0].RenewedTimes);
         Assert.Equal(clock.GetNowAsDate(), student.BorrowedItems[0].BorrowDate);
@@ -125,5 +125,23 @@ public class StudentTests
         var secondRenewal = student.RenewItem(book1, clock);
 
         Assert.False(secondRenewal);
+    }
+
+    [Fact]
+    public void Borrowings_CannotRenewBookNotBorrowedToStudent()
+    {
+        var book1 = new Book("Eggs and Ham1");
+
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+
+        var clock = new TestClock(new DateTime(2000, 1, 1));
+
+        student.BorrowItem(book1, clock);
+
+        var secondStudent = new Student() { FirstName = "Shane", LastName = "Rogers" };
+
+        var firstRenewal = secondStudent.RenewItem(book1, clock);
+
+        Assert.False(firstRenewal);
     }
 }
