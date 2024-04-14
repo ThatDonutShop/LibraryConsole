@@ -7,6 +7,7 @@ AnsiConsole.MarkupLine("[teal]Weltec Library[/]");
 var library = new WeltecLibrary();
 var clock = new SystemClock();
 
+// items borrowed by student noah
 var noah = new Student { FirstName = "Noah", LastName = "Rogers" };
 library.Add(noah);
 
@@ -31,6 +32,7 @@ noah.BorrowItem(howTo, clock);
 noah.BorrowItem(breakingNews, clock);
 noah.BorrowItem(guide, clock);
 
+// items borrowed by staff member jim
 var jim = new Staff { FirstName = "Jim", LastName = "Smith" };
 library.Add(jim);
 
@@ -42,6 +44,25 @@ library.Add(recipe);
 
 jim.BorrowItem(egg, clock);
 jim.BorrowItem(recipe, clock);
+
+// items unborrowed
+var journey = new Book("The Journey Within");
+library.Add(journey);
+
+var mystery = new Book("The Mystery of Midnight Manor");
+library.Add(mystery);
+
+var healthTips = new Article("10 Health Tips for a Better You");
+library.Add(healthTips);
+
+var spaceDiscovery = new Article("Space Exploration: The Next Frontier");
+library.Add(spaceDiscovery);
+
+var fitnessVideo = new DigitalMedia("Fitness at Home: A Beginner's Guide");
+library.Add(fitnessVideo);
+
+var cookingTutorial = new DigitalMedia("Cooking Mastery: From Novice to Chef");
+library.Add(cookingTutorial);
 
 
 
@@ -245,6 +266,16 @@ void BorrowItem()
 
         AnsiConsole.MarkupLine("[teal]What resource would you like to borrow?[/]");
         var catalog = AnsiConsole.Prompt(new SelectionPrompt<Item>().AddChoices(catalogItems));
+
+
+        if (member.BorrowItem(catalog.Item, clock))
+        {
+            AnsiConsole.MarkupLine("[teal]'{0}' has renewed {1} time(s) '{2}'[/]", member, catalog.RenewedTimes, catalog);
+        }
+        else
+        {
+            AnsiConsole.MarkupLine("[teal]'{0}' cannot be renewed[/]",catalog);
+        }
 
         AnsiConsole.MarkupLine("[teal]'{0}' has borrowed '{1}'[/]", member, catalog);
         member.BorrowItem(catalog, clock);
