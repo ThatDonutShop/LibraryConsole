@@ -9,6 +9,8 @@ public abstract class Item
     
     public string Title { get; }
 
-    public Borrowing? Borrowed { get; set;}
+    public BorrowedItem? Borrowed { get; set;}
+
+    public override string ToString() => Title;
 }
 

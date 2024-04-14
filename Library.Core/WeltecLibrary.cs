@@ -11,6 +11,11 @@ public class WeltecLibrary
 
     public List<Member> Members => _members;
 
+    public void Add(Member member)
+    {
+        _members.Add(member);
+    }
+
     public void Add(Item item)
     {
         _items.Add(item);

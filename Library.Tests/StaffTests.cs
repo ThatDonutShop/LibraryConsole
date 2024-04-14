@@ -16,11 +16,11 @@ public class StaffTests
         staff.BorrowItem(book, clock);
 
         Assert.NotNull(book.Borrowed);
-        Assert.Equal(book.Borrowed, staff.Borrowings[0]);
-        Assert.Equal(clock.GetNowAsDate(), staff.Borrowings[0].BorrowDate);
-        Assert.Equal(DateOnly.FromDateTime(new DateTime(2000, 12, 31)), staff.Borrowings[0].DueDate);
-        Assert.False(staff.Borrowings[0].IsRenewed);
-        Assert.Equal(book, staff.Borrowings[0].BorrowedItem);
+        Assert.Equal(book.Borrowed, staff.BorrowedItems[0]);
+        Assert.Equal(clock.GetNowAsDate(), staff.BorrowedItems[0].BorrowDate);
+        Assert.Equal(DateOnly.FromDateTime(new DateTime(2000, 12, 31)), staff.BorrowedItems[0].DueDate);
+        Assert.False(staff.BorrowedItems[0].IsRenewed);
+        Assert.Equal(book, staff.BorrowedItems[0].Item);
     }
 
     [Fact]
@@ -36,9 +36,9 @@ public class StaffTests
 
         clock.TimeTravel(TimeSpan.FromDays(366));
 
-        Assert.True(staff.Borrowings[0].IsOverdue);
-        Assert.Equal(1, staff.Borrowings[0].DaysOverDue);
-        Assert.Equal(5, staff.Borrowings[0].OverDuePenalty);
+        Assert.True(staff.BorrowedItems[0].IsOverdue);
+        Assert.Equal(1, staff.BorrowedItems[0].DaysOverDue);
+        Assert.Equal(5, staff.BorrowedItems[0].OverDuePenalty);
     }
 
     [Fact]
@@ -54,9 +54,9 @@ public class StaffTests
 
         clock.TimeTravel(TimeSpan.FromDays(370));
 
-        Assert.True(staff.Borrowings[0].IsOverdue);
-        Assert.Equal(5, staff.Borrowings[0].DaysOverDue);
-        Assert.Equal(25, staff.Borrowings[0].OverDuePenalty);
+        Assert.True(staff.BorrowedItems[0].IsOverdue);
+        Assert.Equal(5, staff.BorrowedItems[0].DaysOverDue);
+        Assert.Equal(25, staff.BorrowedItems[0].OverDuePenalty);
     }
 
     [Fact]

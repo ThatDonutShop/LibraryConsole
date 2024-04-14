@@ -4,13 +4,33 @@ using System.Collections.Generic;
 
 public abstract class Member
 {
-    private List<Borrowing> _borrowings = new();
+    private List<BorrowedItem> _borrowings = new();
 
     public required string FirstName { get; set; }
 
     public required string LastName { get; set; }
 
-    public Borrowing[] Borrowings => _borrowings.ToArray();    
+    public BorrowedItem[] BorrowedItems => _borrowings.ToArray();
+
+    public virtual bool RenewItem(Item item, IClock clock)
+    {
+        if (item.Borrowed is null)
+        {
+            return false;
+        }
+
+        var existingBorrowedItem = _borrowings.Find(b => b.Item == item);
+        if (existingBorrowedItem is null)
+        {
+            return false;
+        }
+
+        existingBorrowedItem.RenewedTimes++;
+        existingBorrowedItem.BorrowDate = clock.GetNowAsDate();
+        existingBorrowedItem.DueDate = GetDueDate(existingBorrowedItem.BorrowDate);
+
+        return true;
+    }
 
     public virtual bool BorrowItem(Item item, IClock clock)
     {
@@ -20,12 +40,11 @@ public abstract class Member
         }
 
         var borrowedDate = clock.GetNowAsDate();
-        var borrowedItem = new Borrowing(clock, GetPenaltyPerDay())
+        var borrowedItem = new BorrowedItem(clock, GetPenaltyPerDay())
         {
             BorrowDate = borrowedDate,
-            BorrowedItem = item,
-            DueDate = GetDueDate(borrowedDate),
-            IsRenewed = false,
+            Item = item,
+            DueDate = GetDueDate(borrowedDate)          
         };
 
         item.Borrowed = borrowedItem;
