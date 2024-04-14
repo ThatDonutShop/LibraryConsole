@@ -12,10 +12,39 @@ library.Add(noah);
 
 var monster = new Book("The Monster");
 library.Add(monster);
-library.Add(new Book("Hanging Tree"));
-library.Add(new Article("How to grow trees"));
+
+var tree = new Book("The tree");
+library.Add(tree);
+
+var howTo = new Article("How To");
+library.Add(howTo);
+
+var breakingNews = new Article("Breaking News");
+library.Add(breakingNews);
+
+var guide = new DigitalMedia("Guide to Eating");
+library.Add(guide);
 
 noah.BorrowItem(monster, clock);
+noah.BorrowItem(tree, clock);
+noah.BorrowItem(howTo, clock);
+noah.BorrowItem(breakingNews, clock);
+noah.BorrowItem(guide, clock);
+
+var jim = new Staff { FirstName = "Jim", LastName = "Smith" };
+library.Add(jim);
+
+var egg = new Book("The egg");
+library.Add(egg);
+
+var recipe = new Article("Recipes");
+library.Add(recipe);
+
+jim.BorrowItem(egg, clock);
+jim.BorrowItem(recipe, clock);
+
+
+
 
 do
 {
@@ -47,6 +76,8 @@ do
                      return "Display members borrowed items";
                  case Commands.RenewLibraryItem:
                      return "Renew a library item";
+                 case Commands.ReturnLibraryItem:
+                     return "Return a library book";
                  default:
                      throw new NotImplementedException(commandName.ToString());
              }
@@ -77,6 +108,9 @@ do
             break;
         case Commands.RenewLibraryItem:
             RenewLibraryItem();
+            break;
+        case Commands.ReturnLibraryItem:
+            ReturnLibraryItem();
             break;
         default:
             throw new NotSupportedException(command.ToString());
@@ -258,7 +292,7 @@ void RenewLibraryItem()
     var members = library.Members.OrderBy(m => m.FirstName).ToList();
     if (members.Any())
     {
-        AnsiConsole.MarkupLine("[teal]Who would you like to renew and item for?[/]");
+        AnsiConsole.MarkupLine("[teal]Who would you like to renew an item for?[/]");
         var member = AnsiConsole.Prompt(new SelectionPrompt<Member>().AddChoices(members));
 
         AnsiConsole.MarkupLine("[teal]What would you like to renew?[/]");
@@ -267,14 +301,26 @@ void RenewLibraryItem()
 
         if (member.RenewItem(catalog.Item, clock))
         {
-
-
             AnsiConsole.MarkupLine("[teal]'{0}' has renewed {1} time(s) '{2}'[/]", member, catalog.RenewedTimes, catalog);
         }
         else
         {
             AnsiConsole.MarkupLine("[teal]'{0}' cannot be renewed[/]",catalog);
         }
+    }
+}
+
+void ReturnLibraryItem()
+{
+    var members = library.Members.OrderBy(m => m.FirstName).ToList();
+    if (members.Any())
+    {
+        AnsiConsole.MarkupLine("[teal]Who would you like to return an item for?[/]");
+        var member = AnsiConsole.Prompt(new SelectionPrompt<Member>().AddChoices(members));
+
+        AnsiConsole.MarkupLine("[teal]What would you like to return?[/]");
+        var borrowedItems = member.BorrowedItems.ToList();
+        var catalog = AnsiConsole.Prompt(new SelectionPrompt<BorrowedItem>().AddChoices(borrowedItems));
     }
 }
 
@@ -287,7 +333,8 @@ enum Commands
     ListCatalogItems,
     BorrowItem,
     DisplayBorrowedBooks,
-    RenewLibraryItem
+    RenewLibraryItem,
+    ReturnLibraryItem
 }
 
 enum ResourceTypes 
