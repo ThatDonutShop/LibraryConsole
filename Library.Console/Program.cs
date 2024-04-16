@@ -352,8 +352,7 @@ void ReturnLibraryItem()
         var member = AnsiConsole.Prompt(new SelectionPrompt<Member>().AddChoices(members));
 
         AnsiConsole.MarkupLine("[teal]What would you like to return?[/]");
-        var borrowedItems = member.BorrowedItems.ToList();
-        var borrowedItem = AnsiConsole.Prompt(new SelectionPrompt<BorrowedItem>().AddChoices(borrowedItems));
+        var borrowedItem = AnsiConsole.Prompt(new SelectionPrompt<BorrowedItem>().AddChoices(member.BorrowedItems));
 
         if (member.ReturnItem(borrowedItem.Item))
         {
