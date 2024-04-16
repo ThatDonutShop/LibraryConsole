@@ -32,6 +32,25 @@ public abstract class Member
         return true;
     }
 
+    public bool ReturnItem(Item item)
+    {
+        if (item.Borrowed is null || item.Borrowed.IsOverdue) 
+        { 
+            return false;
+        }
+
+        var existingBorrowedItem = _borrowings.Find(b => b.Item == item);
+        if (existingBorrowedItem is null)
+        {
+            return false;
+        }
+
+        item.Borrowed = null;
+        _borrowings.Remove(existingBorrowedItem);
+
+        return true;
+    }
+
     public virtual bool BorrowItem(Item item, IClock clock)
     {
         if (item.Borrowed is not null)

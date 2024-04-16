@@ -258,27 +258,29 @@ void ListCatalogItems()
 void BorrowItem()
 {
     var members = library.Members.OrderBy(m => m.FirstName).ToList();
-    var catalogItems = library.GetCatalogItems().OrderBy(c => c.Title).ToList();
+
+    var catalogItems = library
+        .GetCatalogItems()
+        .Where(c => c.Borrowed is null)
+        .OrderBy(c => c.Title)
+        .ToList();
+
     if (members.Any() && catalogItems.Any())
     {
         AnsiConsole.MarkupLine("[teal]Who is borrowing the item?[/]");
         var member = AnsiConsole.Prompt(new SelectionPrompt<Member>().AddChoices(members));
 
         AnsiConsole.MarkupLine("[teal]What resource would you like to borrow?[/]");
-        var catalog = AnsiConsole.Prompt(new SelectionPrompt<Item>().AddChoices(catalogItems));
+        var catalogItem = AnsiConsole.Prompt(new SelectionPrompt<Item>().AddChoices(catalogItems));
 
-
-        if (member.BorrowItem(catalog.Item, clock))
+        if (member.BorrowItem(catalogItem, clock))
         {
-            AnsiConsole.MarkupLine("[teal]'{0}' has renewed {1} time(s) '{2}'[/]", member, catalog.RenewedTimes, catalog);
+            AnsiConsole.MarkupLine("[teal]'{0}' has borrowed'{1}'[/]", member, catalogItem);
         }
         else
         {
-            AnsiConsole.MarkupLine("[teal]'{0}' cannot be renewed[/]",catalog);
+            AnsiConsole.MarkupLine("[teal]'{0}' cannot be borrowed[/]", catalogItem);
         }
-
-        AnsiConsole.MarkupLine("[teal]'{0}' has borrowed '{1}'[/]", member, catalog);
-        member.BorrowItem(catalog, clock);
     }
 }
 
@@ -308,7 +310,7 @@ void DisplayBorrowedBooks()
                 borrowedItem.Item.Title,
                 borrowedItem.BorrowDate.ToLongDateString(),
                 borrowedItem.DueDate.ToLongDateString(),
-                borrowedItem.IsRenewed.ToString(),
+                borrowedItem.RenewedTimes.ToString(),
                 borrowedItem.OverDuePenalty.ToString("C"));
 
         }
@@ -351,7 +353,16 @@ void ReturnLibraryItem()
 
         AnsiConsole.MarkupLine("[teal]What would you like to return?[/]");
         var borrowedItems = member.BorrowedItems.ToList();
-        var catalog = AnsiConsole.Prompt(new SelectionPrompt<BorrowedItem>().AddChoices(borrowedItems));
+        var borrowedItem = AnsiConsole.Prompt(new SelectionPrompt<BorrowedItem>().AddChoices(borrowedItems));
+
+        if (member.ReturnItem(borrowedItem.Item))
+        {
+            AnsiConsole.MarkupLine("[teal]'{0}' has returned '{1}'[/]", member, borrowedItem.Item.Title);
+        }
+        else
+        {
+            AnsiConsole.MarkupLine("[teal]'{0}' cannot be returned[/]", borrowedItem.Item.Title);
+        }
     }
 }
 
