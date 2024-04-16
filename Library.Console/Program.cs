@@ -64,14 +64,10 @@ library.Add(fitnessVideo);
 var cookingTutorial = new DigitalMedia("Cooking Mastery: From Novice to Chef");
 library.Add(cookingTutorial);
 
-
-
-
 do
 {
     Console.WriteLine(string.Empty);
-
-    
+        
     var command = AnsiConsole.Prompt(new SelectionPrompt<Commands>()
         .Title(" [teal]What do you want to do[/]?")
         .PageSize(10)

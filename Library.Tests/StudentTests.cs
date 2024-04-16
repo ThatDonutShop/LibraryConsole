@@ -115,9 +115,9 @@ public class StudentTests
 
         clock.TimeTravel(TimeSpan.FromDays(1));
 
-        var firstRenewal = student.RenewItem(book1, clock);
+        var hasRenewed = student.RenewItem(book1, clock);
 
-        Assert.True(firstRenewal);
+        Assert.True(hasRenewed);
         Assert.Equal(1, student.BorrowedItems[0].RenewedTimes);
         Assert.Equal(clock.GetNowAsDate(), student.BorrowedItems[0].BorrowDate);
         Assert.Equal(clock.GetNowAsDate().AddDays(90), student.BorrowedItems[0].DueDate);
@@ -126,6 +126,26 @@ public class StudentTests
 
         Assert.False(secondRenewal);
     }
+
+    [Fact]
+    public void Borrowings_CanNotRenewIfMoneyIsOwed()
+    {
+        var book1 = new Book("Eggs and Ham1");
+
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+
+        var clock = new TestClock(new DateTime(2000, 1, 1));
+
+        student.BorrowItem(book1, clock);
+
+        clock.TimeTravel(TimeSpan.FromDays(91));
+
+        var hasRenewed = student.RenewItem(book1, clock);
+
+        Assert.False(hasRenewed);
+        Assert.Equal(0, student.BorrowedItems[0].RenewedTimes);
+    }
+
 
     [Fact]
     public void Borrowings_CannotRenewBookNotBorrowedToStudent()
@@ -140,8 +160,8 @@ public class StudentTests
 
         var secondStudent = new Student() { FirstName = "Shane", LastName = "Rogers" };
 
-        var firstRenewal = secondStudent.RenewItem(book1, clock);
+        var hasRenewed = secondStudent.RenewItem(book1, clock);
 
-        Assert.False(firstRenewal);
+        Assert.False(hasRenewed);
     }
 }

@@ -14,7 +14,7 @@ public abstract class Member
 
     public virtual bool RenewItem(Item item, IClock clock)
     {
-        if (item.Borrowed is null)
+        if (item.Borrowed is null || item.Borrowed.IsOverdue)
         {
             return false;
         }
