@@ -10,6 +10,8 @@ public abstract class Member
 
     public required string LastName { get; set; }
 
+    public double PenaltyRate => 5;
+
     public BorrowedItem[] BorrowedItems => _borrowings.ToArray();
 
     public virtual bool RenewItem(Item item, IClock clock)

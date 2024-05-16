@@ -5,15 +5,13 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Console", "Library.Console\Library.Console.csproj", "{C1C3CFDD-04E9-4AE8-85BD-4158330DE8CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Tests", "Library.Tests\Library.Tests.csproj", "{782B1835-6279-4625-AE0E-162BF2F6FDE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Tests", "Library.Tests\Library.Tests.csproj", "{782B1835-6279-4625-AE0E-162BF2F6FDE9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "csv_files", "csv_files", "{B4E7B2E8-5AED-49CA-81DD-7955EE8AF836}"
-	ProjectSection(SolutionItems) = preProject
-		sorted_data.csv = sorted_data.csv
-		unsorted_data.csv = unsorted_data.csv
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Core", "Library.Core\Library.Core.csproj", "{DFB93809-6459-4245-BCA6-183F37F1BF25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Core", "Library.Core\Library.Core.csproj", "{DFB93809-6459-4245-BCA6-183F37F1BF25}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7FC11CB6-D63F-42F8-9D77-9E030CE424C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.WinForm", "Library.WinForm\Library.WinForm.csproj", "{579F0779-F971-4056-A79C-30F73863F9A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +31,17 @@ Global
 		{DFB93809-6459-4245-BCA6-183F37F1BF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB93809-6459-4245-BCA6-183F37F1BF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFB93809-6459-4245-BCA6-183F37F1BF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{579F0779-F971-4056-A79C-30F73863F9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{579F0779-F971-4056-A79C-30F73863F9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{579F0779-F971-4056-A79C-30F73863F9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{579F0779-F971-4056-A79C-30F73863F9A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{782B1835-6279-4625-AE0E-162BF2F6FDE9} = {7FC11CB6-D63F-42F8-9D77-9E030CE424C0}
+		{DFB93809-6459-4245-BCA6-183F37F1BF25} = {7FC11CB6-D63F-42F8-9D77-9E030CE424C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B51BED04-499C-427D-9065-FDD8F5842331}

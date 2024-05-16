@@ -6,8 +6,6 @@ public sealed class Student : Member
 
     public int MaxRenewals => 1;
 
-    public double PenaltyRate => 5;
-
     public override bool RenewItem(Item item, IClock clock)
     {
         if (item.Borrowed?.RenewedTimes >= 1)
