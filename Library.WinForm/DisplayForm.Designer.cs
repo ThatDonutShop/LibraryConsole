@@ -1,6 +1,6 @@
 ﻿namespace Library.WinForm
 {
-    partial class Form1
+    partial class DisplayForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,32 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Students = new ComboBox();
             SuspendLayout();
             // 
-            // Students
-            // 
-            Students.FormattingEnabled = true;
-            Students.Location = new Point(139, 12);
-            Students.Name = "Students";
-            Students.Size = new Size(121, 23);
-            Students.TabIndex = 0;
-            Students.SelectedIndexChanged += Students_SelectedIndexChanged;
-            // 
-            // Form1
+            // DisplayForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(Students);
-            Name = "Form1";
+            Name = "DisplayForm";
             Text = "Form1";
             Load += Form1_Load;
             ResumeLayout(false);
         }
 
         #endregion
-
-        private ComboBox Students;
     }
 }
