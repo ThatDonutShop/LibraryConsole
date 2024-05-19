@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using Library.Core;
+using Microsoft.VisualBasic.Devices;
 
 namespace Library.WinForm
 {
     public partial class LoginForm : Form
     {
+        private readonly WeltecLibrary _library = new();
+        private readonly IClock _clock = new SystemClock();
+
         public LoginForm()
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

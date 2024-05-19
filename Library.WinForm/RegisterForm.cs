@@ -16,5 +16,10 @@ namespace Library.WinForm
         {
             InitializeComponent();
         }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
