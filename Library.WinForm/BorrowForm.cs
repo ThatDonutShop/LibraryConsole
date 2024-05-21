@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Library.WinForm
 {
-    public partial class DisplayForm : Form
+    public partial class BorrowForm : Form
     {
-        public DisplayForm()
+        public BorrowForm()
         {
             InitializeComponent();
-        }
-
-        private void searchByMemberIDTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

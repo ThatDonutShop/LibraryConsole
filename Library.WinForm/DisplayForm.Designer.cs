@@ -29,20 +29,23 @@
         private void InitializeComponent()
         {
             Title = new Label();
-            DisplayItemsListBox = new ListBox();
-            MemberSelectionComboBox = new ComboBox();
-            BorrowingsDisplayButton = new Button();
-            DisplayEveryItemButton = new Button();
-            ClearListBoxButton = new Button();
+            searchByMemberIDButton = new Button();
+            displayEveryItemButton = new Button();
+            clearListBoxButton = new Button();
             label1 = new Label();
-            ContentsTitleTextBox = new TextBox();
-            ContentsTypeComboBox = new ComboBox();
+            contentsTitleTextBox = new TextBox();
+            contentsTypeComboBox = new ComboBox();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            LibraryContentsComboBox = new ComboBox();
-            RemoveContentButton = new Button();
-            AddContentsButton = new Button();
+            removeContentButton = new Button();
+            addContentsButton = new Button();
+            libraryItemsDataGridView = new DataGridView();
+            searchByMemberIDTextBox = new TextBox();
+            label5 = new Label();
+            libraryContentToRemoveDataGridView = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)libraryItemsDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)libraryContentToRemoveDataGridView).BeginInit();
             SuspendLayout();
             // 
             // Title
@@ -55,49 +58,32 @@
             Title.TabIndex = 0;
             Title.Text = "Display";
             // 
-            // DisplayItemsListBox
+            // searchByMemberIDButton
             // 
-            DisplayItemsListBox.FormattingEnabled = true;
-            DisplayItemsListBox.ItemHeight = 15;
-            DisplayItemsListBox.Location = new Point(12, 78);
-            DisplayItemsListBox.Name = "DisplayItemsListBox";
-            DisplayItemsListBox.Size = new Size(453, 214);
-            DisplayItemsListBox.TabIndex = 1;
+            searchByMemberIDButton.Location = new Point(206, 299);
+            searchByMemberIDButton.Name = "searchByMemberIDButton";
+            searchByMemberIDButton.Size = new Size(51, 23);
+            searchByMemberIDButton.TabIndex = 3;
+            searchByMemberIDButton.Text = "Search";
+            searchByMemberIDButton.UseVisualStyleBackColor = true;
             // 
-            // MemberSelectionComboBox
+            // displayEveryItemButton
             // 
-            MemberSelectionComboBox.FormattingEnabled = true;
-            MemberSelectionComboBox.Location = new Point(12, 299);
-            MemberSelectionComboBox.Name = "MemberSelectionComboBox";
-            MemberSelectionComboBox.Size = new Size(121, 23);
-            MemberSelectionComboBox.TabIndex = 2;
+            displayEveryItemButton.Location = new Point(309, 299);
+            displayEveryItemButton.Name = "displayEveryItemButton";
+            displayEveryItemButton.Size = new Size(75, 23);
+            displayEveryItemButton.TabIndex = 4;
+            displayEveryItemButton.Text = "Display All";
+            displayEveryItemButton.UseVisualStyleBackColor = true;
             // 
-            // BorrowingsDisplayButton
+            // clearListBoxButton
             // 
-            BorrowingsDisplayButton.Location = new Point(139, 299);
-            BorrowingsDisplayButton.Name = "BorrowingsDisplayButton";
-            BorrowingsDisplayButton.Size = new Size(75, 23);
-            BorrowingsDisplayButton.TabIndex = 3;
-            BorrowingsDisplayButton.Text = "Display";
-            BorrowingsDisplayButton.UseVisualStyleBackColor = true;
-            // 
-            // DisplayEveryItemButton
-            // 
-            DisplayEveryItemButton.Location = new Point(309, 299);
-            DisplayEveryItemButton.Name = "DisplayEveryItemButton";
-            DisplayEveryItemButton.Size = new Size(75, 23);
-            DisplayEveryItemButton.TabIndex = 4;
-            DisplayEveryItemButton.Text = "Display All";
-            DisplayEveryItemButton.UseVisualStyleBackColor = true;
-            // 
-            // ClearListBoxButton
-            // 
-            ClearListBoxButton.Location = new Point(390, 298);
-            ClearListBoxButton.Name = "ClearListBoxButton";
-            ClearListBoxButton.Size = new Size(75, 23);
-            ClearListBoxButton.TabIndex = 5;
-            ClearListBoxButton.Text = "Clear";
-            ClearListBoxButton.UseVisualStyleBackColor = true;
+            clearListBoxButton.Location = new Point(390, 298);
+            clearListBoxButton.Name = "clearListBoxButton";
+            clearListBoxButton.Size = new Size(75, 23);
+            clearListBoxButton.TabIndex = 5;
+            clearListBoxButton.Text = "Clear";
+            clearListBoxButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -109,20 +95,20 @@
             label1.TabIndex = 6;
             label1.Text = "Add Library Contents";
             // 
-            // ContentsTitleTextBox
+            // contentsTitleTextBox
             // 
-            ContentsTitleTextBox.Location = new Point(114, 404);
-            ContentsTitleTextBox.Name = "ContentsTitleTextBox";
-            ContentsTitleTextBox.Size = new Size(184, 23);
-            ContentsTitleTextBox.TabIndex = 7;
+            contentsTitleTextBox.Location = new Point(114, 404);
+            contentsTitleTextBox.Name = "contentsTitleTextBox";
+            contentsTitleTextBox.Size = new Size(184, 23);
+            contentsTitleTextBox.TabIndex = 7;
             // 
-            // ContentsTypeComboBox
+            // contentsTypeComboBox
             // 
-            ContentsTypeComboBox.FormattingEnabled = true;
-            ContentsTypeComboBox.Location = new Point(114, 433);
-            ContentsTypeComboBox.Name = "ContentsTypeComboBox";
-            ContentsTypeComboBox.Size = new Size(184, 23);
-            ContentsTypeComboBox.TabIndex = 8;
+            contentsTypeComboBox.FormattingEnabled = true;
+            contentsTypeComboBox.Location = new Point(114, 433);
+            contentsTypeComboBox.Name = "contentsTypeComboBox";
+            contentsTypeComboBox.Size = new Size(184, 23);
+            contentsTypeComboBox.TabIndex = 8;
             // 
             // label2
             // 
@@ -146,60 +132,90 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(12, 459);
+            label4.Location = new Point(521, 9);
             label4.Name = "label4";
             label4.Size = new Size(466, 54);
             label4.TabIndex = 11;
             label4.Text = "Remove Library Contents";
             // 
-            // LibraryContentsComboBox
+            // removeContentButton
             // 
-            LibraryContentsComboBox.FormattingEnabled = true;
-            LibraryContentsComboBox.Location = new Point(12, 516);
-            LibraryContentsComboBox.Name = "LibraryContentsComboBox";
-            LibraryContentsComboBox.Size = new Size(286, 23);
-            LibraryContentsComboBox.TabIndex = 12;
+            removeContentButton.Location = new Point(912, 299);
+            removeContentButton.Name = "removeContentButton";
+            removeContentButton.Size = new Size(75, 23);
+            removeContentButton.TabIndex = 13;
+            removeContentButton.Text = "Remove";
+            removeContentButton.UseVisualStyleBackColor = true;
             // 
-            // RemoveContentButton
+            // addContentsButton
             // 
-            RemoveContentButton.Location = new Point(321, 515);
-            RemoveContentButton.Name = "RemoveContentButton";
-            RemoveContentButton.Size = new Size(75, 23);
-            RemoveContentButton.TabIndex = 13;
-            RemoveContentButton.Text = "Remove";
-            RemoveContentButton.UseVisualStyleBackColor = true;
+            addContentsButton.Location = new Point(321, 433);
+            addContentsButton.Name = "addContentsButton";
+            addContentsButton.Size = new Size(75, 23);
+            addContentsButton.TabIndex = 14;
+            addContentsButton.Text = "Add";
+            addContentsButton.UseVisualStyleBackColor = true;
             // 
-            // AddContentsButton
+            // libraryItemsDataGridView
             // 
-            AddContentsButton.Location = new Point(321, 433);
-            AddContentsButton.Name = "AddContentsButton";
-            AddContentsButton.Size = new Size(75, 23);
-            AddContentsButton.TabIndex = 14;
-            AddContentsButton.Text = "Add";
-            AddContentsButton.UseVisualStyleBackColor = true;
+            libraryItemsDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            libraryItemsDataGridView.Location = new Point(12, 64);
+            libraryItemsDataGridView.Name = "libraryItemsDataGridView";
+            libraryItemsDataGridView.RowTemplate.Height = 25;
+            libraryItemsDataGridView.Size = new Size(453, 228);
+            libraryItemsDataGridView.TabIndex = 15;
+            // 
+            // searchByMemberIDTextBox
+            // 
+            searchByMemberIDTextBox.Location = new Point(79, 299);
+            searchByMemberIDTextBox.Name = "searchByMemberIDTextBox";
+            searchByMemberIDTextBox.Size = new Size(121, 23);
+            searchByMemberIDTextBox.TabIndex = 16;
+            searchByMemberIDTextBox.TextChanged += searchByMemberIDTextBox_TextChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(8, 303);
+            label5.Name = "label5";
+            label5.Size = new Size(65, 15);
+            label5.TabIndex = 17;
+            label5.Text = "ID Number";
+            // 
+            // libraryContentToRemoveDataGridView
+            // 
+            libraryContentToRemoveDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            libraryContentToRemoveDataGridView.Location = new Point(534, 64);
+            libraryContentToRemoveDataGridView.Name = "libraryContentToRemoveDataGridView";
+            libraryContentToRemoveDataGridView.RowTemplate.Height = 25;
+            libraryContentToRemoveDataGridView.Size = new Size(453, 228);
+            libraryContentToRemoveDataGridView.TabIndex = 18;
             // 
             // DisplayForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(488, 573);
-            Controls.Add(AddContentsButton);
-            Controls.Add(RemoveContentButton);
-            Controls.Add(LibraryContentsComboBox);
+            ClientSize = new Size(1072, 502);
+            Controls.Add(libraryContentToRemoveDataGridView);
+            Controls.Add(label5);
+            Controls.Add(searchByMemberIDTextBox);
+            Controls.Add(libraryItemsDataGridView);
+            Controls.Add(addContentsButton);
+            Controls.Add(removeContentButton);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(ContentsTypeComboBox);
-            Controls.Add(ContentsTitleTextBox);
+            Controls.Add(contentsTypeComboBox);
+            Controls.Add(contentsTitleTextBox);
             Controls.Add(label1);
-            Controls.Add(ClearListBoxButton);
-            Controls.Add(DisplayEveryItemButton);
-            Controls.Add(BorrowingsDisplayButton);
-            Controls.Add(MemberSelectionComboBox);
-            Controls.Add(DisplayItemsListBox);
+            Controls.Add(clearListBoxButton);
+            Controls.Add(displayEveryItemButton);
+            Controls.Add(searchByMemberIDButton);
             Controls.Add(Title);
             Name = "DisplayForm";
             Text = "DisplayItems";
+            ((System.ComponentModel.ISupportInitialize)libraryItemsDataGridView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)libraryContentToRemoveDataGridView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -207,19 +223,21 @@
         #endregion
 
         private Label Title;
-        private ListBox DisplayItemsListBox;
-        private ComboBox MemberSelectionComboBox;
-        private Button BorrowingsDisplayButton;
-        private Button DisplayEveryItemButton;
-        private Button ClearListBoxButton;
+        private ListBox displayItemsListBox;
+        private Button searchByMemberIDButton;
+        private Button displayEveryItemButton;
+        private Button clearListBoxButton;
         private Label label1;
-        private TextBox ContentsTitleTextBox;
-        private ComboBox ContentsTypeComboBox;
+        private TextBox contentsTitleTextBox;
+        private ComboBox contentsTypeComboBox;
         private Label label2;
         private Label label3;
         private Label label4;
-        private ComboBox LibraryContentsComboBox;
-        private Button RemoveContentButton;
-        private Button AddContentsButton;
+        private Button removeContentButton;
+        private Button addContentsButton;
+        private DataGridView libraryItemsDataGridView;
+        private TextBox searchByMemberIDTextBox;
+        private Label label5;
+        private DataGridView libraryContentToRemoveDataGridView;
     }
 }
