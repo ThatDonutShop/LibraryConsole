@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             LoginTitleLabel = new Label();
-            button1 = new Button();
+            registerAccountButton = new Button();
             LoginPasswordLabel = new Label();
             LoginEmailAddressLabel = new Label();
-            LoginPasswordTextBox = new TextBox();
-            LoginEmailAddressTextBox = new TextBox();
-            LoginButton = new Button();
+            passwordTextBox = new TextBox();
+            emailAddressTextBox = new TextBox();
+            loginButton = new Button();
+            errorProvider1 = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).BeginInit();
             SuspendLayout();
             // 
             // LoginTitleLabel
@@ -47,14 +50,15 @@
             LoginTitleLabel.TabIndex = 11;
             LoginTitleLabel.Text = "Login";
             // 
-            // button1
+            // registerAccountButton
             // 
-            button1.Location = new Point(65, 239);
-            button1.Name = "button1";
-            button1.Size = new Size(209, 23);
-            button1.TabIndex = 10;
-            button1.Text = "Don't have an account? Click here to register";
-            button1.UseVisualStyleBackColor = true;
+            registerAccountButton.Location = new Point(65, 239);
+            registerAccountButton.Name = "registerAccountButton";
+            registerAccountButton.Size = new Size(209, 23);
+            registerAccountButton.TabIndex = 10;
+            registerAccountButton.Text = "Don't have an account?";
+            registerAccountButton.UseVisualStyleBackColor = true;
+            registerAccountButton.Click += registerAccountButton_Click;
             // 
             // LoginPasswordLabel
             // 
@@ -76,44 +80,50 @@
             LoginEmailAddressLabel.TabIndex = 8;
             LoginEmailAddressLabel.Text = "Email address:";
             // 
-            // LoginPasswordTextBox
+            // passwordTextBox
             // 
-            LoginPasswordTextBox.Location = new Point(153, 159);
-            LoginPasswordTextBox.Name = "LoginPasswordTextBox";
-            LoginPasswordTextBox.Size = new Size(121, 23);
-            LoginPasswordTextBox.TabIndex = 7;
+            passwordTextBox.Location = new Point(153, 159);
+            passwordTextBox.Name = "passwordTextBox";
+            passwordTextBox.Size = new Size(121, 23);
+            passwordTextBox.TabIndex = 7;
             // 
-            // LoginEmailAddressTextBox
+            // emailAddressTextBox
             // 
-            LoginEmailAddressTextBox.Location = new Point(153, 130);
-            LoginEmailAddressTextBox.Name = "LoginEmailAddressTextBox";
-            LoginEmailAddressTextBox.Size = new Size(121, 23);
-            LoginEmailAddressTextBox.TabIndex = 6;
+            emailAddressTextBox.Location = new Point(153, 130);
+            emailAddressTextBox.Name = "emailAddressTextBox";
+            emailAddressTextBox.Size = new Size(121, 23);
+            emailAddressTextBox.TabIndex = 6;
             // 
-            // LoginButton
+            // loginButton
             // 
-            LoginButton.Location = new Point(65, 210);
-            LoginButton.Name = "LoginButton";
-            LoginButton.Size = new Size(209, 23);
-            LoginButton.TabIndex = 12;
-            LoginButton.Text = "Login";
-            LoginButton.UseVisualStyleBackColor = true;
+            loginButton.Location = new Point(65, 210);
+            loginButton.Name = "loginButton";
+            loginButton.Size = new Size(209, 23);
+            loginButton.TabIndex = 12;
+            loginButton.Text = "Login";
+            loginButton.UseVisualStyleBackColor = true;
+            loginButton.Click += loginButton_Click;
+            // 
+            // errorProvider1
+            // 
+            errorProvider1.ContainerControl = this;
             // 
             // LoginForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(334, 361);
-            Controls.Add(LoginButton);
+            Controls.Add(loginButton);
             Controls.Add(LoginTitleLabel);
-            Controls.Add(button1);
+            Controls.Add(registerAccountButton);
             Controls.Add(LoginPasswordLabel);
             Controls.Add(LoginEmailAddressLabel);
-            Controls.Add(LoginPasswordTextBox);
-            Controls.Add(LoginEmailAddressTextBox);
+            Controls.Add(passwordTextBox);
+            Controls.Add(emailAddressTextBox);
             Name = "LoginForm";
             Text = "Login";
             Load += Form1_Load;
+            ((System.ComponentModel.ISupportInitialize)errorProvider1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -121,11 +131,12 @@
         #endregion
 
         private Label LoginTitleLabel;
-        private Button button1;
+        private Button registerAccountButton;
         private Label LoginPasswordLabel;
         private Label LoginEmailAddressLabel;
-        private TextBox LoginPasswordTextBox;
-        private TextBox LoginEmailAddressTextBox;
-        private Button LoginButton;
+        private TextBox passwordTextBox;
+        private TextBox emailAddressTextBox;
+        private Button loginButton;
+        private ErrorProvider errorProvider1;
     }
 }

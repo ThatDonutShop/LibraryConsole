@@ -8,7 +8,7 @@ var library = new WeltecLibrary();
 var clock = new SystemClock();
 
 // items borrowed by student noah
-var noah = new Student { FirstName = "Noah", LastName = "Rogers" };
+var noah = new Student { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 library.Add(noah);
 
 var monster = new Book("The Monster");
@@ -33,7 +33,7 @@ noah.BorrowItem(breakingNews, clock);
 noah.BorrowItem(guide, clock);
 
 // items borrowed by staff member jim
-var jim = new Staff { FirstName = "Jim", LastName = "Smith" };
+var jim = new Staff { FirstName = "Jim", LastName = "Smith", Password = "password", Email = "jim.smith@gmail.com" };
 library.Add(jim);
 
 var egg = new Book("The egg");
@@ -67,7 +67,7 @@ library.Add(cookingTutorial);
 do
 {
     Console.WriteLine(string.Empty);
-        
+
     var command = AnsiConsole.Prompt(new SelectionPrompt<Commands>()
         .Title(" [teal]What do you want to do[/]?")
         .PageSize(10)
@@ -141,11 +141,17 @@ void CreateStaffMember()
 
     var firstName = AnsiConsole.Ask<string>("[teal]First name:[/]");
     var lastName = AnsiConsole.Ask<string>("[teal]Last name:[/]");
+    var password = AnsiConsole.Ask<string>("[teal]Password:[/]"); 
+    var email = AnsiConsole.Ask<string>("[teal]Email:[/]");
+
+
 
     var staff = new Staff()
     {
         FirstName = firstName,
-        LastName = lastName
+        LastName = lastName,
+        Password = password,
+        Email = email
     };
 
     library.Members.Add(staff);
@@ -159,11 +165,16 @@ void CreateStudent()
 
     var firstName = AnsiConsole.Ask<string>("[teal]First name:[/]");
     var lastName = AnsiConsole.Ask<string>("[teal]Last name:[/]");
+    var password = AnsiConsole.Ask<string>("[teal]Password:[/]");
+    var email = AnsiConsole.Ask<string>("[teal]Email:[/]");
+
 
     var student = new Student()
     {
         FirstName = firstName,
-        LastName = lastName
+        LastName = lastName,
+        Password = password,
+        Email = email
     };
 
     library.Members.Add(student);
@@ -175,14 +186,14 @@ void AddLibraryItem()
 {
     var resourceType = AnsiConsole.Prompt(new SelectionPrompt<ResourceTypes>()
       .Title("[teal]Add library item[/]")
-      .UseConverter((resourceType) => 
+      .UseConverter((resourceType) =>
       {
           switch (resourceType)
           {
               case ResourceTypes.DigtalContent:
                   return "Digital media";
               case ResourceTypes.Book:
-              case ResourceTypes.Article:               
+              case ResourceTypes.Article:
               default:
                   return resourceType.ToString();
 
@@ -220,7 +231,7 @@ void AddLibraryItem()
 void RemoveLibraryItem()
 {
     var catalog = library.GetCatalogItems().OrderBy(c => c.Title);
-    
+
     var item = AnsiConsole.Prompt(new SelectionPrompt<Item>()
         .Title("[teal]Remove library item[/]")
         .AddChoices(catalog));
@@ -334,7 +345,7 @@ void RenewLibraryItem()
         }
         else
         {
-            AnsiConsole.MarkupLine("[teal]'{0}' cannot be renewed[/]",catalog);
+            AnsiConsole.MarkupLine("[teal]'{0}' cannot be renewed[/]", catalog);
         }
     }
 }
@@ -374,8 +385,8 @@ enum Commands
     ReturnLibraryItem
 }
 
-enum ResourceTypes 
-{ 
+enum ResourceTypes
+{
     Book,
     Article,
     DigtalContent

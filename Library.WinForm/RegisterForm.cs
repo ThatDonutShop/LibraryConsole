@@ -12,14 +12,18 @@ namespace Library.WinForm
 {
     public partial class RegisterForm : Form
     {
-        public RegisterForm()
+        private LoginForm _loginForm;
+
+        public RegisterForm(LoginForm loginForm)
         {
             InitializeComponent();
+            _loginForm = loginForm;
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void registerAlreadyHaveAccountButton_Click(object sender, EventArgs e)
         {
-
+            _loginForm.Show();
+            this.Hide();
         }
     }
 }

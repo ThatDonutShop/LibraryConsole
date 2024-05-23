@@ -9,7 +9,7 @@ public class StudentTests
     {
         var book = new Book("Eggs");
 
-        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new SystemClock();
 
@@ -30,7 +30,7 @@ public class StudentTests
     {
         var book = new Book("Eggs and Ham");
 
-        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(DateTime.Now);
 
@@ -48,7 +48,7 @@ public class StudentTests
     {
         var book = new Book("Eggs and Ham");
 
-        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(DateTime.Now);
 
@@ -66,7 +66,7 @@ public class StudentTests
     {
         var book = new Book("Eggs and Ham");
 
-        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(DateTime.Now);
 
@@ -89,7 +89,7 @@ public class StudentTests
         var book5 = new Book("Eggs and Ham5");
         var book6 = new Book("Eggs and Ham6");
 
-        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
@@ -107,7 +107,7 @@ public class StudentTests
     {
         var book1 = new Book("Eggs and Ham1");
 
-        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
@@ -132,7 +132,7 @@ public class StudentTests
     {
         var book1 = new Book("Eggs and Ham1");
 
-        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
@@ -152,13 +152,13 @@ public class StudentTests
     {
         var book1 = new Book("Eggs and Ham1");
 
-        var student = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var student = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
         student.BorrowItem(book1, clock);
 
-        var secondStudent = new Student() { FirstName = "Shane", LastName = "Rogers" };
+        var secondStudent = new Student() { FirstName = "Shane", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var hasRenewed = secondStudent.RenewItem(book1, clock);
 

@@ -10,6 +10,10 @@ public abstract class Member
 
     public required string LastName { get; set; }
 
+    public required string Password { get; set; }
+
+    public required string Email { get; set; }
+
     public double PenaltyRate => 5;
 
     public BorrowedItem[] BorrowedItems => _borrowings.ToArray();

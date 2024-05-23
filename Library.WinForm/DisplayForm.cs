@@ -17,7 +17,7 @@ namespace Library.WinForm
             InitializeComponent();
         }
 
-        private void searchByMemberIDTextBox_TextChanged(object sender, EventArgs e)
+        private void searchByNameComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

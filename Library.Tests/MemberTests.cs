@@ -8,7 +8,7 @@ public class MemberTests
     public void ReturnItem_WhenNotBorrowed_CantReturnBook()
     {
         var book = new Book("the Book");
-        var member = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var member = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var bookReturned = member.ReturnItem(book);
         
@@ -19,11 +19,11 @@ public class MemberTests
     public void ReturnItem_WhenBorrowedBySomeoneElse_CantReturnBook()
     {
         var book = new Book("the Book");
-        var member = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var member = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
         
         member.BorrowItem(book, new SystemClock());
 
-        var member2 = new Student() { FirstName = "Jimmy", LastName = "Bob" };
+        var member2 = new Student() { FirstName = "Jimmy", LastName = "Bob", Password = "password", Email = "bob@gmail.com" };
 
         var bookReturned = member2.ReturnItem(book);
 
@@ -34,7 +34,7 @@ public class MemberTests
     public void ReturnItem_Student_CanReturnBook()
     {
         var book = new Book("the Book");
-        var member = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var member = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password" , Email = "noah@gmail.com" };
 
         var bookBorrowed = member.BorrowItem(book, new SystemClock());
 
@@ -52,7 +52,7 @@ public class MemberTests
         var clock = new TestClock(DateTime.Today);
 
         var book = new Book("the Book");
-        var member = new Student() { FirstName = "Noah", LastName = "Rogers" };
+        var member = new Student() { FirstName = "Noah", LastName = "Rogers", Password = "password" , Email = "noah@gmail.com" };
 
         member.BorrowItem(book, clock);
 
@@ -69,7 +69,7 @@ public class MemberTests
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
         var book = new Book("the Book");
-        var member = new Staff() { FirstName = "Noah", LastName = "Rogers" };
+        var member = new Staff() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         member.BorrowItem(book, clock);
 

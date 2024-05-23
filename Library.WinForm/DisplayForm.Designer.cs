@@ -41,9 +41,9 @@
             removeContentButton = new Button();
             addContentsButton = new Button();
             libraryItemsDataGridView = new DataGridView();
-            searchByMemberIDTextBox = new TextBox();
             label5 = new Label();
             libraryContentToRemoveDataGridView = new DataGridView();
+            searchByNameComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)libraryItemsDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)libraryContentToRemoveDataGridView).BeginInit();
             SuspendLayout();
@@ -60,7 +60,7 @@
             // 
             // searchByMemberIDButton
             // 
-            searchByMemberIDButton.Location = new Point(206, 299);
+            searchByMemberIDButton.Location = new Point(184, 297);
             searchByMemberIDButton.Name = "searchByMemberIDButton";
             searchByMemberIDButton.Size = new Size(51, 23);
             searchByMemberIDButton.TabIndex = 3;
@@ -165,22 +165,14 @@
             libraryItemsDataGridView.Size = new Size(453, 228);
             libraryItemsDataGridView.TabIndex = 15;
             // 
-            // searchByMemberIDTextBox
-            // 
-            searchByMemberIDTextBox.Location = new Point(79, 299);
-            searchByMemberIDTextBox.Name = "searchByMemberIDTextBox";
-            searchByMemberIDTextBox.Size = new Size(121, 23);
-            searchByMemberIDTextBox.TabIndex = 16;
-            searchByMemberIDTextBox.TextChanged += searchByMemberIDTextBox_TextChanged;
-            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(8, 303);
+            label5.Location = new Point(12, 301);
             label5.Name = "label5";
-            label5.Size = new Size(65, 15);
+            label5.Size = new Size(39, 15);
             label5.TabIndex = 17;
-            label5.Text = "ID Number";
+            label5.Text = "Name";
             // 
             // libraryContentToRemoveDataGridView
             // 
@@ -191,14 +183,23 @@
             libraryContentToRemoveDataGridView.Size = new Size(453, 228);
             libraryContentToRemoveDataGridView.TabIndex = 18;
             // 
+            // searchByNameComboBox
+            // 
+            searchByNameComboBox.FormattingEnabled = true;
+            searchByNameComboBox.Location = new Point(57, 298);
+            searchByNameComboBox.Name = "searchByNameComboBox";
+            searchByNameComboBox.Size = new Size(121, 23);
+            searchByNameComboBox.TabIndex = 19;
+            searchByNameComboBox.SelectedIndexChanged += searchByNameComboBox_SelectedIndexChanged;
+            // 
             // DisplayForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1072, 502);
+            Controls.Add(searchByNameComboBox);
             Controls.Add(libraryContentToRemoveDataGridView);
             Controls.Add(label5);
-            Controls.Add(searchByMemberIDTextBox);
             Controls.Add(libraryItemsDataGridView);
             Controls.Add(addContentsButton);
             Controls.Add(removeContentButton);
@@ -236,8 +237,8 @@
         private Button removeContentButton;
         private Button addContentsButton;
         private DataGridView libraryItemsDataGridView;
-        private TextBox searchByMemberIDTextBox;
         private Label label5;
         private DataGridView libraryContentToRemoveDataGridView;
+        private ComboBox searchByNameComboBox;
     }
 }

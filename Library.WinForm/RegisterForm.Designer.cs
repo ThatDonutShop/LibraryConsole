@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             RegisterTitleLabel = new Label();
-            RegisterAlreadyHaveAccountButton = new Button();
+            registerAlreadyHaveAccountButton = new Button();
             RegisterPasswordLabel = new Label();
             RegisterEmailAddressLabel = new Label();
             RegisterPasswordTextBox = new TextBox();
@@ -40,7 +40,7 @@
             RegisterLastNameTextBox = new TextBox();
             RegisterAccountTypeCombo = new ComboBox();
             RegisterAccountTypeLabel = new Label();
-            RegisterAccountButton = new Button();
+            registerAccountButton = new Button();
             SuspendLayout();
             // 
             // RegisterTitleLabel
@@ -53,14 +53,15 @@
             RegisterTitleLabel.TabIndex = 17;
             RegisterTitleLabel.Text = "Register";
             // 
-            // RegisterAlreadyHaveAccountButton
+            // registerAlreadyHaveAccountButton
             // 
-            RegisterAlreadyHaveAccountButton.Location = new Point(69, 296);
-            RegisterAlreadyHaveAccountButton.Name = "RegisterAlreadyHaveAccountButton";
-            RegisterAlreadyHaveAccountButton.Size = new Size(209, 23);
-            RegisterAlreadyHaveAccountButton.TabIndex = 16;
-            RegisterAlreadyHaveAccountButton.Text = "Have an account? Click here to login";
-            RegisterAlreadyHaveAccountButton.UseVisualStyleBackColor = true;
+            registerAlreadyHaveAccountButton.Location = new Point(69, 296);
+            registerAlreadyHaveAccountButton.Name = "registerAlreadyHaveAccountButton";
+            registerAlreadyHaveAccountButton.Size = new Size(209, 23);
+            registerAlreadyHaveAccountButton.TabIndex = 16;
+            registerAlreadyHaveAccountButton.Text = "Have an account? Login";
+            registerAlreadyHaveAccountButton.UseVisualStyleBackColor = true;
+            registerAlreadyHaveAccountButton.Click += registerAlreadyHaveAccountButton_Click;
             // 
             // RegisterPasswordLabel
             // 
@@ -112,7 +113,6 @@
             RegisterFirstNameTextBox.Name = "RegisterFirstNameTextBox";
             RegisterFirstNameTextBox.Size = new Size(121, 23);
             RegisterFirstNameTextBox.TabIndex = 18;
-            RegisterFirstNameTextBox.TextChanged += textBox3_TextChanged;
             // 
             // RegisterLastNameLabel
             // 
@@ -148,21 +148,21 @@
             RegisterAccountTypeLabel.TabIndex = 24;
             RegisterAccountTypeLabel.Text = "Account Type:";
             // 
-            // RegisterAccountButton
+            // registerAccountButton
             // 
-            RegisterAccountButton.Location = new Point(69, 267);
-            RegisterAccountButton.Name = "RegisterAccountButton";
-            RegisterAccountButton.Size = new Size(209, 23);
-            RegisterAccountButton.TabIndex = 25;
-            RegisterAccountButton.Text = "Register";
-            RegisterAccountButton.UseVisualStyleBackColor = true;
+            registerAccountButton.Location = new Point(69, 267);
+            registerAccountButton.Name = "registerAccountButton";
+            registerAccountButton.Size = new Size(209, 23);
+            registerAccountButton.TabIndex = 25;
+            registerAccountButton.Text = "Register";
+            registerAccountButton.UseVisualStyleBackColor = true;
             // 
             // RegisterForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(334, 361);
-            Controls.Add(RegisterAccountButton);
+            Controls.Add(registerAccountButton);
             Controls.Add(RegisterAccountTypeLabel);
             Controls.Add(RegisterAccountTypeCombo);
             Controls.Add(RegisterLastNameTextBox);
@@ -170,7 +170,7 @@
             Controls.Add(RegisterFirstNameLabel);
             Controls.Add(RegisterFirstNameTextBox);
             Controls.Add(RegisterTitleLabel);
-            Controls.Add(RegisterAlreadyHaveAccountButton);
+            Controls.Add(registerAlreadyHaveAccountButton);
             Controls.Add(RegisterPasswordLabel);
             Controls.Add(RegisterEmailAddressLabel);
             Controls.Add(RegisterPasswordTextBox);
@@ -196,5 +196,7 @@
         private ComboBox RegisterAccountTypeCombo;
         private Label RegisterAccountTypeLabel;
         private Button RegisterAccountButton;
+        private Button registerAlreadyHaveAccountButton;
+        private Button registerAccountButton;
     }
 }

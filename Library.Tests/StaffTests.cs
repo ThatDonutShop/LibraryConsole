@@ -9,7 +9,7 @@ public class StaffTests
     {
         var book = new Book("Eggs");
 
-        var staff = new Staff() { FirstName = "Noah", LastName = "Rogers" };
+        var staff = new Staff() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(new DateTime(2000, 2, 13));
 
@@ -28,7 +28,7 @@ public class StaffTests
     {
         var book = new Book("Eggs and Ham");
 
-        var staff = new Staff() { FirstName = "Noah", LastName = "Rogers" };
+        var staff = new Staff() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
@@ -46,7 +46,7 @@ public class StaffTests
     {
         var book = new Book("Eggs and Ham");
 
-        var staff = new Staff() { FirstName = "Noah", LastName = "Rogers" };
+        var staff = new Staff() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
@@ -69,7 +69,7 @@ public class StaffTests
         var book5 = new Book("Eggs and Ham5");
         var book6 = new Book("Eggs and Ham6");
 
-        var staff = new Staff() { FirstName = "Noah", LastName = "Rogers" };
+        var staff = new Staff() { FirstName = "Noah", LastName = "Rogers", Password = "password", Email = "noah@gmail.com" };
 
         var clock = new TestClock(new DateTime(2000, 1, 1));
 
