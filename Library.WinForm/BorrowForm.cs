@@ -16,5 +16,10 @@ namespace Library.WinForm
         {
             InitializeComponent();
         }
+
+        private void borrowGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
